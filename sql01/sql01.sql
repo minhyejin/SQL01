@@ -40,7 +40,7 @@
  select first_name "이름", 
          salary "월급"
  from employees
- where first_name like 'S%';
+ where first_name like 'S%'or first_name like 's%';;
  --8
  select department_name, 
         length(department_name)
