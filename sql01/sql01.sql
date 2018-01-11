@@ -5,7 +5,6 @@
 전화번호(phone_number), 입사일(hire_date)순서이고 "이름","월급","전화번호",
 "입사일"로 컬럼이름을 대체해보세요.
 */
-
  select first_name ||' '|| last_name as "이름",
         salary "월급",
         phone_number "전화번호", 
@@ -53,6 +52,10 @@
  where salary between 1000 and 14000
  order by salary desc;
  --6
+ /*
+  * 부서번호가 10, 90, 100 인 직원의 이름, 월급, 입사일, 부서번호를 나타내시오
+입사일은 1977-12 와 같이 표시하시오
+  */
  select first_name "이름", 
         salary "월급",
          to_char(hire_date,'YYYY-MM-DD')"입사일", 
@@ -60,23 +63,37 @@
  from employees
  where department_id in (10,90,100);
  --7 
+ /*
+  * 이름(first_name)에 S 또는 s 가 들어가는 직원의 이름, 월급을 나타내시오
+  */
  select first_name "이름", 
          salary "월급"
  from employees
  where first_name like 'S%'or first_name like 's%';;
  --8
+ /*
+  * 전체 부서를 출력하려고 합니다. 순서는 부서이름이 긴 순서대로 출력해 보세오.
+  */
  select department_name, 
         length(department_name)
  from departments
  order by length(department_name) desc;
  --9
+ /*
+  * 정확하지 않지만, 지사가 있을 것으로 예상되는 나라들을 나라이름을 대문자로 출력하고
+올림차순(ASC)으로 정렬해 보세오.
+  */
  select upper(country_name)
  from countries
  order by upper(country_name) asc;
  --10
+ /*
+  * 입사일이 03/12/31 일 이전 입사한 직원의 이름, 월급, 전화 번호, 입사일을 출력하세요
+전화번호는 545-343- 3433 과 같은 형태로 출력하시오.
+  */
  select first_name "이름",
         salary "월급", 
-        phone_number "전화번호",
+        replace(phone_number,'.','-') "전화번호",
         hire_date "입사일"
  from employees
  where hire_date < '03/12/31';
